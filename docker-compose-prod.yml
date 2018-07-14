@@ -6,9 +6,9 @@ services:
     container_name: users
     build:
       context: ./services/users
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile-prod
     ports:
-      - 5001:5000
+      - '5000'
     environment:
       - APP_SETTINGS=project.config.ProductionConfig
       - PYTHONDONTWRITEBYTECODE=x
@@ -29,3 +29,15 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+
+  nginx:
+    container_name: nginx
+    build: ./services/nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - users
+    links:
+      - users
