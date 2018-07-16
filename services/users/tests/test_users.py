@@ -164,7 +164,7 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'<h1>All Users</h1>', response.data)
             self.assertNotIn(b'<p>No users!</p>', response.data)
-            self.assertIn(b'michael', response.data)
+            self.assertIn(b'bane', response.data)
 
 
 if __name__ == '__main__':
