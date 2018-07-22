@@ -18,7 +18,6 @@ before_script:
 
 script:
   - docker-compose -f docker-compose-dev.yml run users python manage.py test
-  - docker-compose -f docker-compose-dev.yml run client npm test
-
+  
 after_script:
   - docker-compose -f docker-compose-dev.yml down
