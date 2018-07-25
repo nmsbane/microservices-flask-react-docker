@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_debugtoolbar	import DebugToolbarExtension
 from flask_cors import CORS
 from flask_migrate import Migrate
+from flask_bcrypt import Bcrypt
 #from .config import DevelopmentConfig
 
 #app.config.from_object(DevelopmentConfig)
@@ -15,6 +16,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 toolbar = DebugToolbarExtension()
 migrate = Migrate()
+bcrypt = Bcrypt()
 
 def create_app(script_info=None):
     # instantiate the app
@@ -38,6 +40,7 @@ def create_app(script_info=None):
     db.init_app(app)
     toolbar.init_app(app)
     migrate.init_app(app, db)
+    bcrypt.init_app(app)
 
     # create database tables if not already created
     db.app = app
