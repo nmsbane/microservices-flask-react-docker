@@ -36,6 +36,9 @@ def create_app(script_info=None):
     from api.users import users_blueprint
     app.register_blueprint(users_blueprint)
 
+    from api.auth import auth_blueprint
+    app.register_blueprint(auth_blueprint)
+
     # set up extensions
     db.init_app(app)
     toolbar.init_app(app)
