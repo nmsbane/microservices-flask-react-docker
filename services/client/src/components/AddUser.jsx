@@ -1,8 +1,10 @@
 import React from 'react';
 
 const AddUser = (props) => {
-  return (
-      <form onSubmit={(event) => props.addUser(event)}>
+  console.log(props);
+  // eslint-disable-next-line
+      return (
+        <form onSubmit={(event) => props.addUser(event)}>
         <div className="form-group">
           <input
             name="username"
@@ -12,6 +14,7 @@ const AddUser = (props) => {
             required
             onChange={props.handleChange}
             value={props.username}
+            key="0"
             />
         </div>
         <div className="form-group">
@@ -23,15 +26,16 @@ const AddUser = (props) => {
             required
             onChange={props.handleChange}
             value={props.email}
+            key="1"
             />
         </div>
-        <input
+          <input
+            key="2"
             type="submit"
             className="btn btn-primary btn-lg btn-block"
-            type="submit"
-          />
+            type="submit" />
       </form>
-  )
+    );
 
 };
 
