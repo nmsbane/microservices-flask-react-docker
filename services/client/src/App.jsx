@@ -5,6 +5,8 @@ import axios from 'axios';
 import UsersList from './components/UserList';
 import AddUser from './components/AddUser';
 import About from './components/About';
+import NavBar from './components/NavBar';
+import Form from './components/Form';
 
 class App extends Component {
   constructor() {
@@ -12,7 +14,13 @@ class App extends Component {
     this.state = {
       users: [],
       username: '',
-      email: ''
+      email: '',
+      title: 'awesomebane.io',
+      formData: {
+        username: '',
+        email: '',
+        password: ''
+      }
     }
     this.addUser = this.addUser.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -52,6 +60,8 @@ class App extends Component {
 
   render(){
     return (
+      <div>
+        <NavBar title={this.state.title} />
         <div className="container">
           <div className="row">
             <div className="col-md-6">
@@ -72,10 +82,23 @@ class App extends Component {
                   </div>
                 )} />
               <Route exact path='/about' component={About} />
+              <Route exact path='/register' render={() => {
+                  return (<Form
+                    formType='Register'
+                    formData={this.state.formData}
+                  />)
+              }} />
+            <Route exact path="/login" render={() => {
+                return (<Form
+                  formType='Login'
+                  formData={this.state.formData}
+                />)
+            }} />
               </Switch>
             </div>
           </div>
         </div>
+      </div>
     );
 
   }
