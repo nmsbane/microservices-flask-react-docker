@@ -18,6 +18,7 @@ class TestUserModel(BaseTestCase):
         self.assertEqual(user.email, 'test@gmail.com')
         self.assertTrue(user.active)
         self.assertTrue(user.password)
+        self.assertFalse(user.admin)
 
     def test_add_user_duplicate_username(self):
         add_user('justatest', 'test@test.com1', 'greaterthaneight')
@@ -60,6 +61,7 @@ class TestUserModel(BaseTestCase):
         auth_token = user.encode_auth_token(user.id)
         self.assertTrue(isinstance(auth_token, bytes))
         self.assertEqual(User.decode_auth_token(auth_token), user.id)
+
 
 
 if __name__ == '__main__':

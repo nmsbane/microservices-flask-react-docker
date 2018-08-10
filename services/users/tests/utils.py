@@ -1,5 +1,4 @@
 # services/users/tests/utils.py
-
 from project import db
 from api.models import User
 
