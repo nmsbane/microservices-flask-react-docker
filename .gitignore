@@ -1,6 +1,7 @@
 __pycache__
 __snapshots__
 env
+**/.env
 important_commands.txt
 coding.py
 htmlcov

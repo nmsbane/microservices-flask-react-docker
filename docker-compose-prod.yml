@@ -14,6 +14,7 @@ services:
       - PYTHONDONTWRITEBYTECODE=x
       - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
+      - SECRET_KEY=dummy
     depends_on:
       - users-db
     links:
@@ -52,7 +53,7 @@ services:
       dockerfile: Dockerfile-prod
       args:
         - NODE_ENV=production
-        - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+        - REACT_APP_USERS_SERVICE_URL=<YOUR_INSTANCE_IP>
     ports:
       - '3007:80'
     depends_on:
