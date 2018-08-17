@@ -24,10 +24,12 @@ inspect() {
 docker-compose -f $file run users python manage.py test
 inspect $? users
 
+docker-compose -f $file run client npm test -u
+inspect $? client
 
 if [[ "${env}" == "dev" ]]; then
-  docker-compose -f $file run client npm test -- --coverage
-  inspect $? client
+  # docker-compose -f $file run client npm test -u -- --coverage
+  # inspect $? client
   testcafe chrome e2e
   inspect $? e2e
 else
