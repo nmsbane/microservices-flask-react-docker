@@ -1,0 +1,6 @@
+{
+  "name": "microservices-docker",
+  "devDependencies": {
+    "testcafe": "^0.18.6"
+  }
+}

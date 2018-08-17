@@ -1,10 +1,26 @@
+language: node_js
+node_js: '9'
+
+before_install:
+  - stty cols 80
+
+dist: trusty
 sudo: required
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 
 services:
   - docker
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.21.1
+  DOCKER_COMPOSE_VERSION: 1.18.0
+
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -13,11 +29,15 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 before_script:
+  - export TEST_URL=http://127.0.0.1
   - export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
-  - docker-compose -f docker-compose-dev.yml up --build -d
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+  - docker-compose -f docker-compose-prod.yml up --build -d
 
 script:
-  - bash test.sh dev
+  - bash test.sh prod
 
 after_script:
-  - docker-compose -f docker-compose-dev.yml down
+  - docker-compose -f docker-compose-prod.yml down
