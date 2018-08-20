@@ -53,7 +53,7 @@ services:
       dockerfile: Dockerfile-prod
       args:
         - NODE_ENV=production
-        - REACT_APP_USERS_SERVICE_URL=<YOUR_INSTANCE_IP>
+        # - REACT_APP_USERS_SERVICE_URL=<YOUR_INSTANCE_IP>
     ports:
       - '3007:80'
     depends_on:
