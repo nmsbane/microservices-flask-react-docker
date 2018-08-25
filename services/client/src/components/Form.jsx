@@ -29,6 +29,7 @@ class Form extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    debugger;
       if (this.props.formType != nextProps.formType)
         this.clearForm();
   }
@@ -41,27 +42,30 @@ class Form extends React.Component {
 
   handleUserFormSubmit(event) {
     event.preventDefault();
-    const formType = this.props.formType;
+    let formType = this.props.formType;
     let data;
-    if(formType == 'login') {
+    if(formType == 'Login') {
       data = {
         email: this.state.formData.email,
         password: this.state.formData.password
       }
+      formType = 'login';
     };
 
-    if(formType == 'register') {
+    if(formType == 'Register') {
       data = {
         username: this.state.formData.username,
         email: this.state.formData.email,
         password: this.state.formData.password
       };
+      formType = 'register';
     };
 
     const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/${formType}`;
     axios.post(url, data)
     .then((res) => {
       this.clearForm();
+      debugger;
       this.props.loginUser(res.data.auth_token);
     })
     .catch((err) => {

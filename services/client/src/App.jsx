@@ -72,6 +72,7 @@ class App extends Component {
                       handleFormChange={this.handleFormChange}
                       handleUserFormSubmit={this.handleUserFormSubmit}
                       isAuthenticated={this.state.isAuthenticated}
+                      loginUser={this.loginUser}
                     />)
                 }} />
                 <Route exact path="/login" render={() => {
@@ -81,6 +82,7 @@ class App extends Component {
                     handleFormChange={this.handleFormChange}
                     handleUserFormSubmit={this.handleUserFormSubmit}
                     isAuthenticated={this.state.isAuthenticated}
+                    loginUser={this.loginUser}
                   />)
                 }} />
               <Route exact path="/logout" render={() => {
