@@ -2,9 +2,10 @@ import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import './NavBar.css';
 
 const NavBar = (props) => (
-  <Navbar inverse collapseOnSelect>
+  <Navbar collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
         <span>{props.title}</span>
@@ -36,7 +37,7 @@ const NavBar = (props) => (
             <NavItem eventKey={2}>Log In</NavItem>
           </LinkContainer>
         }
-        {props.isAuthenticated && 
+        {props.isAuthenticated &&
           <LinkContainer to="/logout">
             <NavItem eventKey={3}>Log Out</NavItem>
           </LinkContainer>
